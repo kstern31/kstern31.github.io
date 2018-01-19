@@ -3,7 +3,9 @@ layout: post
 title: Week 1 at Metis - Learning to Stay Afloat
 ---
 
-"Imagine you are in a pool. You should feel that the water level is just about at neck level". This metaphor was introduced on the first day to describe how the workload should feel while at Metis.
+"Imagine you are in a pool. You should feel that the water level is just about at neck level". 
+
+This metaphor was introduced on the first day to describe how the workload should feel while at Metis.
 
 This wasn't surprising. After all, this is a bootcamp; I know what I signed up for.
 
