@@ -27,10 +27,9 @@ After investigating the different parameters that could be used in a search quer
 
 ![Region Selector]({{ site.baseurl }}/images/regions-colleges.png "Region Selector on CollegeData")
 
-A region could be selected using the click of a mouse, which can be achieved with a code snippet like below, where the region is one of the potential regions on the map:
+A region could be selected using the click of a mouse, which can be achieved with a code snippet like below, where (region) is one of the potential regions on the map:
 
 ```python
-
 element = driver.find_element_by_xpath('//*[@id="%s"]' % (region))
 element.click()
 ```
