@@ -34,5 +34,9 @@ element = driver.find_element_by_xpath('//*[@id="%s"]' % (region))
 element.click()
 ```
 
+For each of these search queries, I could then select URLs for each college, and store them in a list. Finally I threw this data into a pickle file, so that I could access them using my scrapy spider. The code for my Selenium script and Scrapy spider can be found at my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher).
+
+## EDA and Data Cleaning ## 
+
 
 
