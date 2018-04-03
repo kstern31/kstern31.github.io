@@ -90,7 +90,7 @@ df['avgClassSize'] = classSizeBins['avgClassSize']
 df.avgClassSize.replace(0, np.nan, inplace = True)
 ```
 
-The rest of my data exploration and cleaning can be found on my [github] (https://github.com/kstern31/Whats-Driving-College-Costs-Higher/tree/master/dataExploration).
+The rest of my data exploration and cleaning can be found on my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher/tree/master/dataExploration).
 
 Thanks for reading part 1! The next part of the process will be about the data analysis and will be up soon.
 
