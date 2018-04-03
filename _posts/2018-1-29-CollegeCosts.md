@@ -43,11 +43,11 @@ Since the purpose of this analysis was to analyze what attributes had the larges
 
 Some colleges had multiple costs listed (in state vs. out of state), and I decided to use the out of state across the board, as I felt this cost is more indicative of the rising college costs. The cost variables were in list format if there were in state and out of state costs, so for any cost variables with a list of length 2, replace it with the second value (which is the out-of-state cost.
 
-```
+```python
 df['totalCost'][df.totalCost.str.len() == 2] = pd.DataFrame(df.loc[df.totalCost.str.len() == 2].totalCost.values.tolist(), index= df.loc[df.totalCost.str.len() == 2].index)[1]
 ```
 
-Below are a couple examples of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general. 
+Below is one example of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general. 
 
 The class size variable was brought in as a list of bins with the percent that each bin is represented. An example is shown below:
 
@@ -62,7 +62,7 @@ Over 100 students: 0% of classes
 ```
 
 I wanted to get a single number that I could use for my linear regression model, so I took the median of each bin, multiplied it by the percent that its represented, and then summing all of these values to calculate the average class size for each college.
-```
+```python
 classSizedf = pd.DataFrame(df.classSize.values.tolist(), index= df.index)
 #replace Nones and "Not reported" with NaN
 classSizedf = classSizedf.replace("Not reported", np.nan)
