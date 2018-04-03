@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is Driving College Costs Higher?
+title: What is Driving College Costs Higher? Part 1 - Data Collection and Exploration
 ---
 
 Over the past 30 years, college costs have been rising exponentially, and the increase has been especially clear when
@@ -47,7 +47,9 @@ Some colleges had multiple costs listed (in state vs. out of state), and I decid
 df['totalCost'][df.totalCost.str.len() == 2] = pd.DataFrame(df.loc[df.totalCost.str.len() == 2].totalCost.values.tolist(), index= df.loc[df.totalCost.str.len() == 2].index)[1]
 ```
 
-Below are a couple examples of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general.
+Below are a couple examples of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general. 
+
+The class size variable was brought in as a list of bins with the percent that each bin is represented. An example is shown below:
 
 ```
 2-9 students: 23% of classes
@@ -58,3 +60,37 @@ Below are a couple examples of data cleaning I did for the independent variables
 50-99 students: 5% of classes
 Over 100 students: 0% of classes
 ```
+
+I wanted to get a single number that I could use for my linear regression model, so I took the median of each bin, multiplied it by the percent that its represented, and then summing all of these values to calculate the average class size for each college.
+```
+classSizedf = pd.DataFrame(df.classSize.values.tolist(), index= df.index)
+#replace Nones and "Not reported" with NaN
+classSizedf = classSizedf.replace("Not reported", np.nan)
+classSizedf.fillna(value=np.nan, inplace = True)
+#cleaning white space at beginning and end of lists, and splitting into elements
+classSizedf = classSizedf.apply(lambda x: x.str.strip())
+classSizedf = classSizedf.apply(lambda x: x.str.split(' '))
+
+#for most of the lists, the first element will be the bin (e.g. 2-9 students), and the third element will be the %.
+#these lists have a length of 5. The other lists be in the format [Over 100 students: 0% of classes] and have a 
+#length of 6, so we can just get the second element and multiply it by the 4th.
+def getMedian(l):
+    if len(l) == 6:
+        return float(l[1].strip()) * float(l[3].strip('%'))/100
+    else:
+        return sum(map(float, l[0].split('-')))/2 * float(l[2].strip('%'))/100
+
+classSizeBins = classSizedf.applymap(lambda x: x if type(pd.isnull(x)) == bool else getMedian(x))
+classSizeBins['avgClassSize'] = (classSizeBins[0].fillna(0) + classSizeBins[1].fillna(0) + 
+                                 classSizeBins[2].fillna(0) + classSizeBins[3].fillna(0) +
+                                 classSizeBins[4].fillna(0) + classSizeBins[5].fillna(0) +
+                                 classSizeBins[6].fillna(0))
+
+df['avgClassSize'] = classSizeBins['avgClassSize']
+df.avgClassSize.replace(0, np.nan, inplace = True)
+```
+
+The rest of my data exploration and cleaning can be found on my [github] (https://github.com/kstern31/Whats-Driving-College-Costs-Higher/tree/master/dataExploration).
+
+Thanks for reading part 1! The next part of the process will be about the data analysis and will be up soon.
+
