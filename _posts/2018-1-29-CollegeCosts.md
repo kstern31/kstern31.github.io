@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project Luther - What is Driving College Costs Higher?
+title: What is Driving College Costs Higher?
 ---
 
 Over the past 30 years, college costs have been rising exponentially, and the increase has been especially clear when
@@ -12,6 +12,7 @@ as an online college advisor for prospective students. For each college page, th
 academics, campus life etc.
 
 ## Data Scraping - Using Selenium and Scrapy ##
+![Region Selector]({{ site.baseurl }}/images/regions-colleges.png "Region Selector on CollegeData")
 
 
 
