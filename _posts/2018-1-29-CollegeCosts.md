@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is Driving College Costs Higher? Part 1 - Data Collection and Exploration
+title: What is Driving College Costs Higher? Part 1 - Data Collection and Cleaning
 ---
 
 Over the past 30 years, college costs have been rising exponentially, and the increase has been especially clear when
@@ -36,7 +36,7 @@ element.click()
 
 For each of these search queries, I could then select URLs for each college, and store them in a list. Finally I threw this data into a pickle file, so that I could access them using my scrapy spider. The code for my Selenium script and Scrapy spider can be found on my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher).
 
-## EDA and Data Cleaning ## 
+## Data Cleaning ## 
 
 Since the purpose of this analysis was to analyze what attributes had the largest effect on the cost of tuition, the first data cleaning step was to drop any colleges where the dependent variable was missing. For independent variables, if that column had more than 40% missing, I would drop that variable, otherwise I would fill the column with the mean of that variable, stratified by institution type (public vs. private). Although this isn't the perfect solution to handling missing data, I decided this was sufficient considering the timeline of this project (2 weeks).
 
