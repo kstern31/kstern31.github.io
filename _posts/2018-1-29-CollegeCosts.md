@@ -34,9 +34,17 @@ element = driver.find_element_by_xpath('//*[@id="%s"]' % (region))
 element.click()
 ```
 
-For each of these search queries, I could then select URLs for each college, and store them in a list. Finally I threw this data into a pickle file, so that I could access them using my scrapy spider. The code for my Selenium script and Scrapy spider can be found at my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher).
+For each of these search queries, I could then select URLs for each college, and store them in a list. Finally I threw this data into a pickle file, so that I could access them using my scrapy spider. The code for my Selenium script and Scrapy spider can be found on my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher).
 
 ## EDA and Data Cleaning ## 
 
+Since the purpose of this analysis was to analyze what attributes had the largest effect on the cost of tuition, the first data cleaning step was to drop any colleges where the dependent variable was missing. For independent variables, if that column had more than 40% missing, I would drop that variable, otherwise I would fill the column with the mean of that variable, stratified by institution type (public vs. private). Although this isn't the perfect solution to handling missing data, I decided this was sufficient considering the timeline of this project (2 weeks).
 
+> 2-9 students: 23% of classes
+> 10-19 students: 25% of classes
+> 20-29 students: 25% of classes
+> 30-39 students: 14% of classes
+> 40-49 students: 7% of classes
+> 50-99 students: 5% of classes
+> Over 100 students: 0% of classes
 
