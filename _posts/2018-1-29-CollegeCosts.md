@@ -40,11 +40,21 @@ For each of these search queries, I could then select URLs for each college, and
 
 Since the purpose of this analysis was to analyze what attributes had the largest effect on the cost of tuition, the first data cleaning step was to drop any colleges where the dependent variable was missing. For independent variables, if that column had more than 40% missing, I would drop that variable, otherwise I would fill the column with the mean of that variable, stratified by institution type (public vs. private). Although this isn't the perfect solution to handling missing data, I decided this was sufficient considering the timeline of this project (2 weeks).
 
-> 2-9 students: 23% of classes
-> 10-19 students: 25% of classes
-> 20-29 students: 25% of classes
-> 30-39 students: 14% of classes
-> 40-49 students: 7% of classes
-> 50-99 students: 5% of classes
-> Over 100 students: 0% of classes
 
+Some colleges had multiple costs listed (in state vs. out of state), and I decided to use the out of state across the board, as I felt this cost is more indicative of the rising college costs. The cost variables were in list format if there were in state and out of state costs, so for any cost variables with a list of length 2, replace it with the second value (which is the out-of-state cost.
+
+```
+df['totalCost'][df.totalCost.str.len() == 2] = pd.DataFrame(df.loc[df.totalCost.str.len() == 2].totalCost.values.tolist(), index= df.loc[df.totalCost.str.len() == 2].index)[1]
+```
+
+Below are a couple examples of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general.
+
+```
+2-9 students: 23% of classes
+10-19 students: 25% of classes
+20-29 students: 25% of classes
+30-39 students: 14% of classes
+40-49 students: 7% of classes
+50-99 students: 5% of classes
+Over 100 students: 0% of classes
+```
