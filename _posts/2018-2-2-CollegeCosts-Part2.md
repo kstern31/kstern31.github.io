@@ -61,7 +61,12 @@ Rabbinical Academy Mesivta Rabbi Chaim Berlin
 Central Yeshiva Tomchei Tmimim-Lubavitch	
 ```
 
-The majority of these are religious schools with a low number of students. These schools probably don't adhere to the traditional structure of a university, and it makes sense that my model wasn't able to accurately predict the cost of tuition for these schools.
+The majority of these are religious schools with a low number of students. These schools probably don't adhere to the traditional structure of a university, and it makes sense that my model wasn't able to accurately predict the cost of tuition for these schools. 
+
+Some interesting next steps might be to include data around the political landscape, as loan limits and funding from the government likely have a substantial effect on the cost of tuition. In addition, there seems to be somewhat of a recursive effect regarding the cost of tuition, where one college increases the cost of tuition to become more exclusive, and because other colleges want to compete with this exclusive reputation, they also increase the cost of tuition. Getting data over time might be one way to try and account for this effect.
+
+
+
 
 
 
