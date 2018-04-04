@@ -17,4 +17,14 @@ To come up with a baseline model, I looked at the correlations between each inde
 
 ![Correlations]({{ site.baseurl }}/images/cost-corr.png "Total Cost Predicted by Independent Variables")
 
-The next model to test was using all the independent variables that I had imported, and it performed slightly better, with a R² of 0.620.
+The next model to test was using all the independent variables that I had imported, and it performed slightly better, with a R² of 0.620. The residuals also seemed to be randomly distributed. Although this was not a perfect model, I decided to explore the polynomial transformations and regularization before I dropped any independent variables.
+
+I split my data into a train/test set, and plotted the mean squared error for each degree of polynomial transformation. As can be seen from the graph below, the MSE skyrockets after transforming the data, so I did not polynomially transform the data.
+
+![Polynomial Transform]({{ site.baseurl }}/images/poly-degree.png "MSE by Polynomial Degree Transform")
+
+I then wanted to run my model through lasso regularization to see if my model was overfit. After normalizing the data, I ran the model through 5 K-folds to see how the MSE changed with different alphas. The alpha that minimized MSE was 0, indicating that regularization is not particularly necessary for this model.
+
+![Regularization]({{ site.baseurl }}/images/alpha-reg.png "MSE by Alpha - Lasso Regularization")
+
+Although I didn't end up using either of these methods to alter my model, it gave me slight confidence that my model wasn't overfit. To see if I could get a more interpretable model, I decided to explore removing some features based on the p-values from the initial model.
