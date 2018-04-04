@@ -47,7 +47,7 @@ Some colleges had multiple costs listed (in state vs. out of state), and I decid
 df['totalCost'][df.totalCost.str.len() == 2] = pd.DataFrame(df.loc[df.totalCost.str.len() == 2].totalCost.values.tolist(), index= df.loc[df.totalCost.str.len() == 2].index)[1]
 ```
 
-Below is one example of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, and data exploration in general. 
+Below are some example of data cleaning I did for the independent variables. This served as a good exercise in getting more comfortable with pandas, lambda functions, and data exploration in general. 
 
 The class size variable was brought in as a list of bins with the percent that each bin is represented. An example is shown below:
 
@@ -89,6 +89,23 @@ classSizeBins['avgClassSize'] = (classSizeBins[0].fillna(0) + classSizeBins[1].f
 df['avgClassSize'] = classSizeBins['avgClassSize']
 df.avgClassSize.replace(0, np.nan, inplace = True)
 ```
+
+Most of the colleges had single values for ACT/SAT scores, but there were some where there was a range for the scores. For these values, I wanted to take the average of the range, and I detected this by the use of a "-" in the score.
+
+```python
+#for values with a range, take the average, else just return the value
+def getScore(s):
+    s = s.split(' ')[0]
+    if '-' in s:
+        return sum(map(float, s.split('-')))/2
+    else:
+        return float(s)
+
+df.ACT = df.ACT.apply(lambda x: x if pd.isnull(x) else getScore(x))
+df.SATMath = df.SATMath.apply(lambda x: x if pd.isnull(x) else getScore(x))
+df.SATReading = df.SATReading.apply(lambda x: x if pd.isnull(x) else getScore(x))
+```
+After further exploration of the ACT/SAT scores, there seemed to be some extreme outliers (e.g. 140 SAT Math score for UPenn). After checking the actual URL, I found that there were incorrect answers on the website itself, so I manually imputed the values for a couple of colleges in my data set. I'm sure I didn't get all the incorrect values, but I had to settle for only correcting the extreme outliers in the interest of time.
 
 The rest of my data exploration and cleaning can be found on my [github](https://github.com/kstern31/Whats-Driving-College-Costs-Higher/tree/master/dataExploration).
 
