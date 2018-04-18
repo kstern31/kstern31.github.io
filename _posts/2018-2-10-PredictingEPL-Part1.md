@@ -21,18 +21,23 @@ The site with the most in-depth team-level information that I could find was [Wh
 
 To scrape this data, I used similar techniques as described in my [first project.](https://kstern31.github.io/CollegeCosts-Part1/) The code for data scraping is available on my [github.](https://github.com/kstern31/Predicting-Match-Outcomes-in-EPL/tree/master/data_collection_and_analysis) As a forewarning, the scraping process for getting data from WhoScored takes a couple of days, so be prepared to run the code overnight for multiple nights.
 
-### Interesting Features ###
+### Feature Engineering ###
 
 The level of information that WhoScored provides is extremely granular, with stats such as how many passes were made into the attacking third of the pitch, and how many passes were made on the ground as opposed to in the air. Below is an example of some of the other stats that are available:
 
 ![WhoScored Stats]({{ site.baseurl }}/images/project2/whoscored.png "WhoScored Stats")
 
-I was also able to engineer some features such 
+Luckily, after the lengthy scraping process, the data itself was fairly clean, so I could immediately get into data exploration and feature engineering.
+
+The first step was to create labels for the outcomes, based on the number of goals scored by the home and away team. The three labels would be "Home Win", "Away Win", and "Draw".
 
 ![Historical Match Outcomes]({{ site.baseurl }}/images/project2/outcomes.png "Match Outcomes")
 
+After taking a look at the dependent variable distribution, you can see that the most common outcome is that the home team wins. This is in line with the concept of "Home Team Advantage", which describes the benefit the home team is said to gain over the visiting team. This phenomenom has been attributed to psychological effects, playing in more familiar situations, or the disadvantage of having to travel. However, that isn't too important to dig in to at the moment, I just needed to keep in mind that in general, teams perform differently when playing at home versus when playing away.
 
 
+
+I was also able to engineer some features such as creating an indicator of whether a "top player" was missing that week through injury or suspension.
 
 
 
