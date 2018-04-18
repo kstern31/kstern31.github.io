@@ -21,6 +21,14 @@ The site with the most in-depth team-level information that I could find was [Wh
 
 To scrape this data, I used similar techniques as described in my [first project.](https://kstern31.github.io/CollegeCosts-Part1/) The code for data scraping is available on my [github.](https://github.com/kstern31/Predicting-Match-Outcomes-in-EPL/tree/master/data_collection_and_analysis) As a forewarning, the scraping process for getting data from WhoScored takes a couple of days, so be prepared to run the code overnight for multiple nights.
 
+### Interesting Features ###
+
+The level of information that WhoScored provides is extremely granular, with stats such as how many passes were made into the attacking third of the pitch, and how many passes were made on the ground as opposed to in the air. Below is an example of some of the other stats that are available:
+
+![WhoScored Stats]({{ site.baseurl }}/images/project2/whoscored.png "WhoScored Stats")
+
+I was also able to engineer some features such 
+
 ![Historical Match Outcomes]({{ site.baseurl }}/images/project2/outcomes.png "Match Outcomes")
 
 
