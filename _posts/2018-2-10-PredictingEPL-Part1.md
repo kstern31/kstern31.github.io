@@ -33,53 +33,18 @@ The first step was to create labels for the outcomes, based on the number of goa
 
 ![Historical Match Outcomes]({{ site.baseurl }}/images/project2/outcomes.png "Match Outcomes")
 
-After taking a look at the dependent variable distribution, you can see that the most common outcome is that the home team wins. This is in line with the concept of "home team advantage", which describes the benefit the home team is said to gain over the visiting team. This phenomenom has been attributed to psychological effects, playing in more familiar situations, or the disadvantage of having to travel. A more in-depth discussion of "home team advantage" is probably best left for another time. I just needed to keep in mind that in general, teams perform differently when playing at home versus when playing away. Because of this, I wanted to only take into account past _home_ performances for the home team and past _away_ performances for the away team when predicting match outcomes.
+After taking a look at the dependent variable distribution, you can see that the most common outcome is that the home team wins. As a result, my baseline model would be predicting that the home team wins every game.
 
+This is in line with the concept of "home team advantage", which describes the benefit the home team is said to gain over the visiting team. This phenomenom has been attributed to psychological effects, playing in more familiar situations, or the disadvantage of having to travel. A more in-depth discussion of "home team advantage" is probably best left for another time. I just needed to keep in mind that in general, teams perform differently when playing at home versus when playing away. Because of this, I wanted to only take into account past _home_ performances for the home team and past _away_ performances for the away team when predicting match outcomes. 
+
+To measure past performance, I decided to use moving averages. The three options that I decided to explore were simple moving averages, exponential moving averages, and expanding window moving averages. In simple terms:
+
+* Simple Moving Average: calculated by taking the arithmetic mean over a specific number of values (e.g. averaged over the past 5 games)
+* Exponential Moving Average: window includes all past data, but gives more weight to recent values to make it more responsive to new information
+* Expanding Window Moving Average: similar calculation to a simple moving average, but the window includes all past data
 
 
 I was also able to engineer some features such as creating an indicator of whether a "top player" was missing that week through injury or suspension.
-
-
-
-
-
-
-
-
-
-
-## Data Exploration ##
-Since this was a linear regression analysis, one of the assumptions is to make sure that the dependent variable is normally
-distributed. If it isn't, a non-linear transformation might be necessary.
-
-![Dependent Variable Distribution]({{ site.baseurl }}/images/dependent-dist.png "Dependent Variable Distribution")
-
-Although the distribution of the dependent variable is slightly right-skewed, it still roughly follows a normal distribution, so I will proceed without transforming my variable.
-
-To come up with a baseline model, I looked at the correlations between each independent variable and the dependent variable. Below are a few of the independent variables that had a high correlation with total cost. The baseline model to beat is 
-
-
-The most important features in predicting the cost of tuition were:
-* Admission Rate
-* Percent of International Students
-* Percent of Undergrad Women
-* Percent Graduating
-
-
-```
-Yeshiva D'Monsey Rabbinical College	
-Talmudical Institute of Upstate New York	
-Torah Temimah Talmudical Seminary	
-Rabbinical Academy Mesivta Rabbi Chaim Berlin	
-Central Yeshiva Tomchei Tmimim-Lubavitch	
-```
-
-The majority of these are religious schools with a low number of students. These schools probably don't adhere to the traditional structure of a university, and it makes sense that my model wasn't able to accurately predict the cost of tuition for these schools. 
-
-Some interesting next steps might be to include data around the political landscape, as loan limits and funding from the government likely have a substantial effect on the cost of tuition. In addition, there seems to be somewhat of a recursive effect regarding the cost of tuition, where one college increases the cost of tuition to become more exclusive, and because other colleges want to compete with this exclusive reputation, they also increase the cost of tuition. Getting data over time might be one way to try and account for this effect.
-
-
-
 
 
 
