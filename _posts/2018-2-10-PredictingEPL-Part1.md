@@ -43,6 +43,19 @@ To measure past performance, I decided to use moving averages. The three options
 * Exponential Moving Average: window includes all past data, but gives more weight to recent values to make it more responsive to new information
 * Expanding Window Moving Average: similar calculation to a simple moving average, but the window includes all past data
 
+Pandas has fairly easy-to-use functions to calculate these moving averages, and I just created my own function so I could do calculations for each different type of moving average.
+
+```python
+if avgtype == 'rolling':
+  homepaststats = season.groupby('homeTeam', as_index = False).rolling(window_decay, min_periods = 1).mean().reset_index(level = 0, drop = True)
+  awaypaststats = season.groupby('awayTeam', as_index = False).rolling(window_decay, min_periods = 1).mean().reset_index(level = 0, drop = True)
+elif avgtype == 'ewm':
+  homepaststats = season.groupby('homeTeam', as_index = False).apply(lambda x: x.ewm(halflife = window_decay).mean()).reset_index(level = 0, drop = True)
+  awaypaststats = season.groupby('awayTeam', as_index = False).apply(lambda x: x.ewm(halflife = window_decay).mean()).reset_index(level = 0, drop = True)
+elif avgtype == 'expanding':
+  homepaststats = season.groupby('homeTeam', as_index = False).expanding(min_periods = 1).mean().reset_index(level = 0, drop = True)
+  awaypaststats = season.groupby('awayTeam', as_index = False).expanding(min_periods = 1).mean().reset_index(level = 0, drop = True)
+```
 
 I was also able to engineer some features such as creating an indicator of whether a "top player" was missing that week through injury or suspension.
 
