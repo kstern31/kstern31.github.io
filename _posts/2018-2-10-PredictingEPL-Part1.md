@@ -3,9 +3,9 @@ layout: post
 title: Predicting Match Outcomes in the English Premier League
 ---
 
+Every year, the English Premier League (EPL), one of the most popular football (soccer) leagues in the world, takes place from August until May. With it, comes many group chats with my friends trying to predict the outcomes of matches every week. Since we have been watching football week in, week out for at least a couple years, we like to think that we can use our knowledge to accurately predict who would win. Alas, the long term outcome remains the same, we would routinely lose money by placing money on our predictions.
 
-
-EPL EPL EPL EPL EPL
+**Could I use classification analysis to make predictions that were more accurate than my own?**
 
 
 
