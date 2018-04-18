@@ -57,6 +57,8 @@ elif avgtype == 'expanding':
   awaypaststats = season.groupby('awayTeam', as_index = False).expanding(min_periods = 1).mean().reset_index(level = 0, drop = True)
 ```
 
+The window_decay variable was one of the arguments of my function, and was used to calculate the window for the simple moving average, and the halflife for the exponential moving average (half-life is the period of time for the exponential weight to reduce to one half).
+
 I was also able to engineer some features such as creating an indicator of whether a "top player" was missing that week through injury or suspension.
 
 
