@@ -33,7 +33,7 @@ The first step was to create labels for the outcomes, based on the number of goa
 
 ![Historical Match Outcomes]({{ site.baseurl }}/images/project2/outcomes.png "Match Outcomes")
 
-After taking a look at the dependent variable distribution, you can see that the most common outcome is that the home team wins. This is in line with the concept of "Home Team Advantage", which describes the benefit the home team is said to gain over the visiting team. This phenomenom has been attributed to psychological effects, playing in more familiar situations, or the disadvantage of having to travel. However, that isn't too important to dig in to at the moment, I just needed to keep in mind that in general, teams perform differently when playing at home versus when playing away.
+After taking a look at the dependent variable distribution, you can see that the most common outcome is that the home team wins. This is in line with the concept of "home team advantage", which describes the benefit the home team is said to gain over the visiting team. This phenomenom has been attributed to psychological effects, playing in more familiar situations, or the disadvantage of having to travel. A more in-depth discussion of "home team advantage" is probably best left for another time. I just needed to keep in mind that in general, teams perform differently when playing at home versus when playing away. Because of this, I wanted to only take into account past _home_ performances for the home team and past _away_ performances for the away team when predicting match outcomes.
 
 
 
