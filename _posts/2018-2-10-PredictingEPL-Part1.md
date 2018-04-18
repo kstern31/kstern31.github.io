@@ -59,7 +59,31 @@ elif avgtype == 'expanding':
 
 The window_decay variable was one of the arguments of my function, and was used to calculate the window for the simple moving average, and the halflife for the exponential moving average (half-life is the period of time for the exponential weight to reduce to one half).
 
-I was also able to engineer some features such as creating an indicator of whether a "top player" was missing that week through injury or suspension.
+After performing those calculations, we had past performance features for:
+* How the home team performed and how the opposing teams performed against them in past home games
+* How the away team performed and how the opposing teams performed against them in past away games
+
+One way to structure the dataframe would be to include all these features by merging them together, and the other way would be to take the difference between how the home team performed in their home games and how the away team performed in their respective games, and also taking the difference between how the opposition teams performed against them. I thought it was worth exploring how these two feature sets would effect the models that I would build. An important thing to note in the below code is that I shifted the rows so that I'm lagging the averages by one game (so the game I'm predicting would be aligned with the row of moving average calculations from past games).
+
+```python
+    #select all columns that are not home and away team
+    shiftcolumns = homepaststats.drop(['homeTeam', 'awayTeam'], axis = 1).columns.values
+    #shift all selected columns down by one
+    homepaststats[shiftcolumns] = homepaststats.groupby(['homeTeam'])[shiftcolumns].transform(lambda x:x.shift())
+    
+    #select all columns that are not home and away team
+    shiftcolumns = awaypaststats.drop(['homeTeam', 'awayTeam'], axis = 1).columns.values 
+    #shift all selected columns down by one
+    awaypaststats[shiftcolumns] = awaypaststats.groupby(['awayTeam'])[shiftcolumns].transform(lambda x:x.shift())
+
+    diff = (homepaststats.drop(['homeTeam', 'awayTeam'], axis = 1) - awaypaststats.drop(['homeTeam', 'awayTeam'], axis = 1))
+    diff['homeTeam'] = homepaststats.homeTeam
+    diff['awayTeam'] = homepaststats.awayTeam
+    
+    both = pd.merge(homepaststats, awaypaststats,  how='outer', left_on=['homeTeam','awayTeam'], right_on = ['homeTeam','awayTeam'], suffixes=('_home', '_away'))
+```
+
+Thanks for reading up to this point! My next blog post will discuss the models and results from this classification analysis.
 
 
 
